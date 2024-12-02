@@ -1,0 +1,397 @@
+@import url(keyframes.css);
+@import url(fonts.css);
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,body{
+    height: 100%;
+}
+
+body{
+    color: white;
+    background-color: #121212;
+}
+
+.glava{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 0px 24px;
+}
+
+.glava_svg{
+  height: 40px;
+  width: 40px;
+  fill: white;
+}
+
+.glavni {
+    margin: 0 auto;
+    width: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: 89%;
+}
+
+.progressbar {
+    background:#7C7C7C;
+    width: 436px;
+    height: 2px;
+    display: flex;
+}
+
+.progressbar div {
+    height: 2px;
+    width: 0%;
+}
+
+.prviProgres {
+    background:#1ED760; 
+    animation: drugiProgres 0.2s linear forwards;
+}
+
+.zacetniDiv {
+    height:80px;
+    width: 100%;
+    display: flex;
+}
+
+.gumb1 {
+    width: 56px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    background-color: #121212;
+    cursor: pointer;
+}
+
+.Svg-nazaj-gumb:hover{
+    fill: rgb(255, 255, 255);
+}
+
+.Svg-nazaj-gumb{
+    height: 24px;
+    width: 24px;
+    fill:#bdb3b3;
+    display: block;
+}
+
+.prviText{
+    height:80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.korak{
+    font-family: mixUIRegular;
+    color: #bdb3b3;
+    margin-right: 85px;
+}
+
+.ustvariG{
+    color: white;
+    font-family: mixUIBold;
+    margin-top: 4px;
+}
+
+.alert{
+    color: #F3727F;
+    font-family: mixUIRegular;
+    height: auto;
+    width: 300px;
+    display: none;
+    font-size: 14px;
+    padding: 8px 8px 8px 0;
+}
+
+
+.AlertIme{
+    color: #F3727F;
+    font-family: mixUIRegular;
+    height: auto;
+    width: 300px;
+    display: none;
+    font-size: 14px;
+    padding: 8px 8px 8px 0;
+
+}
+.RadioAlert{
+    color: #F3727F;
+    font-family: mixUIRegular;
+    height: auto;
+    width: 300px;
+    display: none;
+    font-size: 14px;
+    padding: 8px 8px 8px 0;
+}
+
+.displayBlock{
+    display: block;
+}
+
+.drugiDiv{
+    width: 324px;
+    margin-top:18px;
+}
+
+.imetext{
+    font-size: 14px;
+    font-family: mixUIBold;
+}
+
+.textPodIme{
+    color: #B3B3B3;
+    font-family: mixUIRegular;
+    font-size: 14px;
+}
+
+#ime{
+    all:unset;
+    width:298px;
+    height:22px;
+    border-radius: 4px;
+    background-color: #121212;
+    border:1px #818181 solid;
+    color: white;
+    font-size:16px;
+    font-family: mixUIRegular;
+    padding: 12px;
+    margin-top:8px;
+    display: block;
+}
+
+#ime:hover{
+    border-color: white;
+}
+
+.DatumRojstva{
+    font-size: 14px;
+    font-family: mixUIBold;
+}
+
+.textDatumRojstva{
+    color: #B3B3B3;
+    font-family: mixUIRegular;
+    font-size: 14px;
+}
+
+#dan{
+    all:unset;
+    height: 24px;
+    width: 35.56px;
+    border-radius: 4px;
+    background-color: #121212;
+    border:1px #818181 solid;
+    color: white;
+    font-size:16px;
+    font-family: mixUIRegular;
+    padding: 11px;
+    margin-top:8px;
+   
+}
+
+#dan::placeholder{
+    color: #bdb3b3;
+}
+
+#dan:hover{
+    border-color: white;
+}
+#ime.invalid, #dan.invalid, #mesec.invalid, #leto.invalid{
+    border: 1px solid red;
+}
+
+#mesec{
+    all:unset;
+    height: 24px;
+    width: 96px;
+    border-radius: 4px;
+    background-color: #121212;
+    border:1px #818181 solid;
+    color: white;
+    font-size:16px;
+    font-family: mixUIRegular;
+    font-weight:450;
+    padding: 11px 48px 11px 11px;
+    margin-top:8px;
+    line-height: 24px;
+}
+
+#mesec::placeholder{
+    color: #ffffff;
+}
+
+#mesec:hover{
+    border-color: white;
+}
+
+#leto{
+    all:unset;
+    height: 24px;
+    width: 67.047px;
+    border-radius: 4px;
+    background-color: #121212;
+    border:1px #818181 solid;
+    color: white;
+    font-size:16px;
+    font-family: mixUIRegular;
+    font-weight:450;
+    padding: 11px 11px 11px 11px;
+    margin-top:8px;
+    
+}
+
+#leto::placeholder{
+    color: #bdb3b3;
+}
+
+#leto:hover{
+    border-color: white;
+}
+
+.datum{
+    display: flex;
+}
+
+.Svg{
+    position: absolute;
+    right: 12px;
+    top: 20px;
+}
+
+.spol{
+    font-size: 14px;
+    font-family: mixUIBold;
+}
+
+.textPodSpol{
+    color: #B3B3B3;
+    font-family: mixUIRegular;
+    font-size: 14px;
+}
+
+.SpolDiv{
+    margin-top: 16px;
+    margin-left: 2px;
+}
+
+.radio-container {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    
+    margin-right: 24px;
+    font-size: 14px;
+    font-family: mixUIRegular;
+}
+
+.radio-container input {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    transition: border 0.1s ease;
+    cursor: pointer;
+    margin-right: 12px;
+}
+.radio-container input:checked {
+    border: 5px solid #1ed760;
+}
+
+#glavniradiodiv{
+    margin-top: 12px;
+    display: flex !important;
+    width: 350px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.radioEntry {
+    width: fit-content;
+    padding: 4px 0 4px 0;
+}
+
+.gumb {
+    width: 324px;
+    height: 48px;
+    background-color: #1ed760;
+    border: unset;
+    border-radius: 40px;
+    font-family: mixUIRegular;
+    cursor: pointer;
+    margin-top: 50px;
+}
+  
+.noga {
+    margin-top: auto;
+    font-family: mixUIRegular;
+    font-size: 12px;
+    color: #b3b3b3;
+    padding: 24px;
+    text-align: center;
+}
+  
+#del1 {
+    font-family: mixUIRegular;
+    font-size: 12px;
+    color: #b3b3b3;
+}
+  
+#del2 {
+    font-family: mixUIRegular;
+    font-size: 12px;
+    color: #b3b3b3;
+}
+
+.popup {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 70px;
+    padding: 20px;
+    background-color: #121212;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    text-align: center;
+    font-family: mixUIRegular;
+    font-size: 20px;
+    color: white;
+    z-index: 1000;
+    border: 1px solid #1ed760;
+  }
+  
+  #overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .gumb_popup{
+    height: 30px;
+    width: 100px;
+    background-color: #1ed760;
+    border: unset;
+    border-radius: 40px;
+    font-family: mixUIBold;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  .gumb_popup:hover {
+    background-color: #3be477;
+  }
