@@ -34,7 +34,7 @@ document.querySelector(".gumb").addEventListener("click", () => {
       popup.style.color = "white";
     },
     preConfirm: () => {
-      location.href = "logo-editor.html";
+      location.href = "index2.html";
     },
   });
 });
