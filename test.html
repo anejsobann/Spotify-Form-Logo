@@ -3,182 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify-Like Logo with Color Control</title>
+    <title>Custom SVG Editor</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="logo" id="logo">
-            <div class="spotify-circle" id="circle">
-                <div class="wave wave1" id="wave1"></div>
-                <div class="wave wave2" id="wave2"></div>
-                <div class="wave wave3" id="wave3"></div>
-            </div>
+        <div class="svg-container" id="svg-container">
+            <svg id="custom-svg" xmlns="http://www.w3.org/2000/svg" class="gasper" width="200" height="200" viewBox="0 0 512 529">
+                <path id="svg-path" fill="green" stroke="black" stroke-width="1" d="M 83.75,74.62 C 158.75,4.25 256.36,7.82 256.36,7.82 256.36,7.82 368.33,5.67 442.67,89.33 519.67,173.33 511.82,264.73 511.82,264.73 511.82,264.73 517.00,363.00 438.50,443.00 356.33,528.67 249.50,520.25 249.50,520.25 249.50,520.25 144.50,518.50 71.00,443.00 -12.50,345.50 0.00,253.50 0.00,253.50 0.00,253.50 3.50,142.50 83.75,74.62 Z M 250.75,192.75 C 351.00,199.00 404.25,233.75 404.25,233.75 404.25,233.75 424.75,248.25 440.25,226.50 451.75,200.25 430.25,190.25 430.25,190.25 430.25,190.25 355.00,146.75 255.00,143.00 173.59,134.84 96.75,156.75 96.75,156.75 96.75,156.75 77.25,162.75 79.00,184.50 83.25,212.00 109.00,205.50 109.00,205.50 109.00,205.50 180.67,186.04 250.75,192.75 Z M 240.00,272.75 C 323.27,278.55 374.73,312.91 374.73,312.91 374.73,312.91 392.36,325.82 405.27,306.91 415.45,286.91 396.18,276.73 396.18,276.73 396.18,276.73 342.25,240.50 252.25,231.25 172.50,223.50 109.45,244.36 109.45,244.36 109.45,244.36 94.55,248.73 96.73,265.64 98.55,288.00 119.45,285.27 119.45,285.27 119.45,285.27 178.42,266.08 240.00,272.75 Z M 246.73,348.55 C 307.64,353.45 347.82,381.09 347.82,381.09 347.82,381.09 361.45,391.27 373.82,377.64 382.00,359.27 365.45,351.27 365.45,351.27 365.45,351.27 313.82,318.36 245.82,315.09 187.63,308.65 122.18,324.36 122.18,324.36 122.18,324.36 107.45,324.73 106.36,342.00 109.64,363.64 126.91,357.82 126.91,357.82 126.91,357.82 189.97,342.57 246.73,348.55 Z"/>
+            </svg>
         </div>
 
         <div class="controls">
-            <label for="colorInput">Circle Color:</label>
-            <input type="color" id="colorInput" value="#1DB954">
-            <button onclick="updateColor()">Update Circle Color</button>
-
-            <label for="waveColorInput">Wave Line Color:</label>
-            <input type="color" id="waveColorInput" value="#ffffff">
-            <button onclick="updateWaveColor()">Update Wave Color</button>
-
-            <label for="sizeInput">Logo Size:</label>
-            <input type="range" id="sizeInput" min="50" max="200" value="100">
+            <label for="sizeInput">SVG Size:</label>
+            <input type="range" id="sizeInput" min="100" max="500" value="200">
             <button onclick="updateSize()">Update Size</button>
 
-            <label for="stretchInput">Stretch Factor:</label>
-            <input type="range" id="stretchInput" min="0.5" max="2" step="0.1" value="1">
-            <button onclick="updateStretch()">Apply Stretch</button>
+            <label for="colorInput">Path Color:</label>
+            <input type="color" id="colorInput" value="#008000">
+            <button onclick="updateColor()">Update Color</button>
+
+            <button onclick="downloadSVG()">Download as SVG</button>
+            <button onclick="downloadPNG()">Download as JPG</button>
         </div>
     </div>
 
     <script>
-        // Update the circle color
-function updateColor() {
-    const colorInput = document.getElementById('colorInput').value;
-    const circle = document.getElementById('circle');
-    circle.style.backgroundColor = colorInput;
-}
+        function updateSize() {
+            const size = document.getElementById('sizeInput').value;
+            const svg = document.getElementById('custom-svg');
+            svg.setAttribute('width', size);
+            svg.setAttribute('height', size);
+        }
 
-// Update the wave line color
-function updateWaveColor() {
-    const waveColorInput = document.getElementById('waveColorInput').value;
-    const waves = document.querySelectorAll('.wave');
-    waves.forEach((wave) => {
-        wave.style.backgroundColor = waveColorInput;
-    });
-}
+        function updateColor() {
+            const color = document.getElementById('colorInput').value;
+            const path = document.getElementById('svg-path');
+            path.setAttribute('fill', color);
+        }
 
-// Update the size of the logo
-function updateSize() {
-    const sizeInput = document.getElementById('sizeInput').value;
-    const circle = document.getElementById('circle');
-    circle.style.width = `${sizeInput}px`;
-    circle.style.height = `${sizeInput}px`;
+        function downloadSVG() {
+            const svg = document.getElementById('custom-svg');
+            const serializer = new XMLSerializer();
+            const source = serializer.serializeToString(svg);
+            const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'custom-image.svg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
 
-    // Adjust the wave sizes proportionally
-    const waves = document.querySelectorAll('.wave');
-    waves.forEach((wave) => {
-        wave.style.height = `${sizeInput / 15}px`; // Dynamic wave thickness
-        wave.style.borderRadius = `${sizeInput / 3}px`; // Adjust curve
-    });
-}
+        function downloadPNG() {
+            const svg = document.getElementById('custom-svg');
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            const size = parseInt(svg.getAttribute('width'));
 
-// Update the stretch effect
-function updateStretch() {
-    const stretchInput = document.getElementById('stretchInput').value;
-    const circle = document.getElementById('circle');
-    circle.style.transform = `scaleX(${stretchInput})`; // Apply horizontal stretch
-}
+            canvas.width = size;
+            canvas.height = size;
 
+            const img = new Image();
+            const serializer = new XMLSerializer();
+            const source = serializer.serializeToString(svg);
+            const svgBlob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(svgBlob);
+
+            img.onload = function() {
+                context.drawImage(img, 0, 0);
+                URL.revokeObjectURL(url);
+
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/jpeg');
+                link.download = 'custom-image.jpg';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+
+            img.src = url;
+        }
     </script>
+
     <style>
-        /* General Reset */
-body {
-    margin: 0;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-/* Container */
-.container {
-    text-align: center;
-}
+        .container {
+            text-align: center;
+        }
 
-/* Spotify-Like Logo */
-.logo {
-    margin-bottom: 20px;
-}
+        .svg-container {
+            margin: 20px 0;
+        }
 
-.spotify-circle {
-    width: 100px;
-    height: 100px;
-    background-color: #1DB954; /* Spotify Green */
-    border-radius: 50%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease, width 0.3s ease, height 0.3s ease, transform 0.3s ease;
-}
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+        }
 
-.wave {
-    position: absolute;
-    width: 60%;
-    height: 6%;
-    background-color: white; /* Default wave color */
-    border-radius: 50px;
-    animation: fadeIn 0.6s ease-out;
-}
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
 
-/* Wave positions */
-.wave1 {
-    top: 30%;
-    transform: rotate(10deg);
-}
-.wave2 {
-    top: 45%;
-    transform: rotate(5deg);
-}
-.wave3 {
-    top: 60%;
-    transform: rotate(0deg);
-}
+        input[type="range"], input[type="color"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
+        button {
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #1DB954;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
 
-/* Controls */
-.controls {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 400px;
-}
-
-label {
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-input[type="color"],
-input[type="range"] {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-}
-
-button {
-    padding: 10px 15px;
-    font-size: 14px;
-    cursor: pointer;
-    background-color: #1DB954;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #158a3b;
-}
-
+        button:hover {
+            background-color: #158a3b;
+        }
     </style>
 </body>
 </html>

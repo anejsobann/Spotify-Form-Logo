@@ -11,6 +11,7 @@ document.querySelectorAll(".checkbox-container2").forEach((container) => {
 });
 
 const form = document.getElementById("noviceForm");
+
 document.querySelector(".gumb").addEventListener("click", () => {
   Swal.fire({
     title: "Registrian si.",
@@ -33,7 +34,7 @@ document.querySelector(".gumb").addEventListener("click", () => {
       popup.style.color = "white";
     },
     preConfirm: () => {
-      form.submit();
+      location.href = "logo-editor.html";
     },
   });
 });
