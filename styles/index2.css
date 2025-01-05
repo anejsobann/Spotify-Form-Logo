@@ -7,13 +7,11 @@
 html,
 body {
   height: 100%;
-  
 }
 
 body {
     margin: 0;
     padding: 20px;
-    font-family: mixUIBold;
     background-color: #121212;
     color: #fff;
     display: flex;
@@ -29,6 +27,19 @@ body {
     margin: 20px 0;
 }
 
+.headerNaslov{
+    float: left;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    font-family: mixUITiltle;
+    color: white;
+    font-size: 48px;
+}
+
+.naslov{
+    margin-right: 30px;
+}
+
 .controls {
     display: flex;
     flex-direction: column;
@@ -39,6 +50,7 @@ body {
 label {
     font-size: 14px;
     margin-bottom: 5px;
+    font-family: mixUIBold;
 }
 
 input[type="range"], input[type="color"] {
