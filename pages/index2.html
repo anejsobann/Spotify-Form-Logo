@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Editor</title>
+    <link rel="stylesheet" href="../styles/index2.css">
+   
+</head>
+<body>
+    <div class="headerNaslov">
+        <div class="naslov">Spotify Logo Editor</div>
+    </div>
+    <div class="container">
+        <div class="svg-container" id="svg-container">
+            <svg id="custom-svg" xmlns="http://www.w3.org/2000/svg" class="gasper" width="200" height="200" viewBox="0 0 512 529">
+                <path id="svg-path" fill="#1ed760" stroke="black" stroke-width="1" d="M 83.75,74.62 C 158.75,4.25 256.36,7.82 256.36,7.82 256.36,7.82 368.33,5.67 442.67,89.33 519.67,173.33 511.82,264.73 511.82,264.73 511.82,264.73 517.00,363.00 438.50,443.00 356.33,528.67 249.50,520.25 249.50,520.25 249.50,520.25 144.50,518.50 71.00,443.00 -12.50,345.50 0.00,253.50 0.00,253.50 0.00,253.50 3.50,142.50 83.75,74.62 Z M 250.75,192.75 C 351.00,199.00 404.25,233.75 404.25,233.75 404.25,233.75 424.75,248.25 440.25,226.50 451.75,200.25 430.25,190.25 430.25,190.25 430.25,190.25 355.00,146.75 255.00,143.00 173.59,134.84 96.75,156.75 96.75,156.75 96.75,156.75 77.25,162.75 79.00,184.50 83.25,212.00 109.00,205.50 109.00,205.50 109.00,205.50 180.67,186.04 250.75,192.75 Z M 240.00,272.75 C 323.27,278.55 374.73,312.91 374.73,312.91 374.73,312.91 392.36,325.82 405.27,306.91 415.45,286.91 396.18,276.73 396.18,276.73 396.18,276.73 342.25,240.50 252.25,231.25 172.50,223.50 109.45,244.36 109.45,244.36 109.45,244.36 94.55,248.73 96.73,265.64 98.55,288.00 119.45,285.27 119.45,285.27 119.45,285.27 178.42,266.08 240.00,272.75 Z M 246.73,348.55 C 307.64,353.45 347.82,381.09 347.82,381.09 347.82,381.09 361.45,391.27 373.82,377.64 382.00,359.27 365.45,351.27 365.45,351.27 365.45,351.27 313.82,318.36 245.82,315.09 187.63,308.65 122.18,324.36 122.18,324.36 122.18,324.36 107.45,324.73 106.36,342.00 109.64,363.64 126.91,357.82 126.91,357.82 126.91,357.82 189.97,342.57 246.73,348.55 Z"/>
+            </svg>
+        </div>
+
+        <div class="controls">
+            <label for="sizeInput">SVG Size:</label>
+            <input type="range" id="sizeInput" min="100" max="500" value="200">
+            <button onclick="updateSize()">Update Size</button>
+
+            <label for="colorInput">Path Color:</label>
+            <input type="color" id="colorInput" value="#008000">
+            <button onclick="updateColor()">Update Color</button>
+
+            <button onclick="downloadSVG()">Download as SVG</button>
+            <button onclick="downloadPNG()">Download as JPG</button>
+        </div>
+    </div>
+
+    <script>
+        function updateSize() {
+            const size = document.getElementById('sizeInput').value;
+            const svg = document.getElementById('custom-svg');
+            svg.setAttribute('width', size);
+            svg.setAttribute('height', size);
+        }
+
+        function updateColor() {
+            const color = document.getElementById('colorInput').value;
+            const path = document.getElementById('svg-path');
+            path.setAttribute('fill', color);
+        }
+
+        function downloadSVG() {
+            const svg = document.getElementById('custom-svg');
+            const serializer = new XMLSerializer();
+            const source = serializer.serializeToString(svg);
+            const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'custom-image.svg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function downloadPNG() {
+            const svg = document.getElementById('custom-svg');
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            const size = parseInt(svg.getAttribute('width'));
+
+            canvas.width = size;
+            canvas.height = size;
+
+            const img = new Image();
+            const serializer = new XMLSerializer();
+            const source = serializer.serializeToString(svg);
+            const svgBlob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(svgBlob);
+
+            img.onload = function() {
+                context.drawImage(img, 0, 0);
+                URL.revokeObjectURL(url);
+
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/jpeg');
+                link.download = 'custom-image.jpg';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+
+            img.src = url;
+        }
+    </script>
+</body>
+</html>

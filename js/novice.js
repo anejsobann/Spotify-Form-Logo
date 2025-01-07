@@ -11,6 +11,7 @@ document.querySelectorAll(".checkbox-container2").forEach((container) => {
 });
 
 const form = document.getElementById("noviceForm");
+
 document.querySelector(".gumb").addEventListener("click", () => {
   Swal.fire({
     title: "Registrian si.",
@@ -33,7 +34,7 @@ document.querySelector(".gumb").addEventListener("click", () => {
       popup.style.color = "white";
     },
     preConfirm: () => {
-      form.submit();
+      location.href = "index2.html";
     },
   });
 });
@@ -43,17 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const trigger = document.getElementById("trigger");
   const closePopup = document.getElementById("closePopup");
 
-  // Show popup when "@" is clicked
   trigger.addEventListener("click", () => {
     popup.style.display = "block";
   });
 
-  // Hide popup when "Close" button is clicked
   closePopup.addEventListener("click", () => {
     popup.style.display = "none";
   });
 
-  // Optional: Hide popup when clicking outside of it
   window.addEventListener("click", (event) => {
     if (event.target === popup) {
       popup.style.display = "none";

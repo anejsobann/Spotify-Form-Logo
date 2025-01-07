@@ -1,0 +1,74 @@
+@import url(fonts.css);
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #121212;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.svg-container {
+    margin: 20px 0;
+}
+
+.headerNaslov{
+    float: left;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    font-family: mixUITiltle;
+    color: white;
+    font-size: 48px;
+}
+
+.naslov{
+    margin-right: 30px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-family: mixUIBold;
+}
+
+input[type="range"], input[type="color"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+  width: 280px;
+  height: 45px;
+  background-color: #1ed760;
+  border: unset;
+  border-radius: 40px;
+  font-family: mixUIBold;
+  cursor: pointer;
+}
+
+button:hover {
+    background-color: #3be477;
+}
